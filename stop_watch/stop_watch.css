@@ -1,0 +1,76 @@
+*{
+    font-family: 'Varela Round', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-color: darkseagreen;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+
+#content{
+    grid-template-rows: auto auto;
+    position: absolute;
+    bottom: 0;
+}
+#watchDiv{
+    width: 250px;
+    background-color: rgb(119, 118, 118);
+    padding: 5px;
+    border-radius: .25em;
+    box-shadow: -4px 4px 4px rgb(57, 82, 31);
+    min-width: 250px;
+}
+p{
+    font-size: 200%;
+    background-color: ghostwhite;
+    /* margin: 5px; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: .125em;
+    box-shadow: inset 3px 3px 3px gray;
+}
+.button{
+    width: 30%;
+    height: 2em;
+    font-weight: bolder;
+    font-size: 125%;
+    background-color:  rgb(145, 128, 91);
+    color: white;
+    /* box-shadow: 2px 2px 2px gray; */
+    box-shadow: -2px 2px 2px rgb(68, 68, 68);
+    border: none;
+    outline: none;
+    border-radius: .125em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.buttons{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.button:hover{
+    transform: translate(1px, -2px);
+    box-shadow: -3px 3px 2px rgb(68, 68, 68);
+}
+.button:active{
+    transform: none;
+    box-shadow: -2px 2px 2px rgb(68, 68, 68);
+}
+
+.link{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+}
