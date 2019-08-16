@@ -165,24 +165,16 @@ li{
 .card{
     color: white;
     background-color: rgb(145, 128, 91);
-    /* width: 220px; */
-    /* max-height: 450px; */
     width: 180px;
-    /* height: 350px; */
     transition: width ease 1s;
 }
 @media screen and (max-height: 760px){
-    #cardsDiv img{
-        
+    #cardsDiv img{       
         padding: 5px;
-        height: 0;
-        
-    }
-    .card{
-        /* max-height: 150px; */
+        height: 0;       
     }
 }
-@media screen and (max-height: 425px){
+@media screen and (max-height: 750px){
     #intro > img {
         height: 0;
     }
@@ -194,6 +186,7 @@ li{
     }
     #cardsDiv{
         position: static;
+
     }
 }
 
@@ -201,22 +194,10 @@ li{
     #cardsDiv{
         width: 100vw;
         display: block;
-        background-color: black;
         margin-top: 0;
         padding: 0;
         padding-top: 2em;
     }
-    main{
-        height: auto;
-    }
-    /* .spanDiv {
-        display: inline;
-        
-    }
-    #intro{
-        align-content: flex-start;
-    } */
-  
     .card{
         width: 180px;
         margin-bottom: 1em;
@@ -225,8 +206,4 @@ li{
         margin-left: auto;
         margin-right: auto;
     } 
-    main{
-        position: static;
-        
-    }
 }
