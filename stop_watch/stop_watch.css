@@ -10,26 +10,25 @@
     display: grid;
     align-content: center;
     justify-content: center;
+    min-width: 350px;
 }
-
-
 #content{
     grid-template-rows: auto auto;
     position: absolute;
     bottom: 0;
 }
 #watchDiv{
-    width: 250px;
+    width: 90vw;
     background-color: rgb(119, 118, 118);
     padding: 5px;
     border-radius: .25em;
     box-shadow: -4px 4px 4px rgb(57, 82, 31);
-    min-width: 250px;
+    min-width: 200px;
+    max-width: 400px;
 }
 p{
     font-size: 200%;
     background-color: ghostwhite;
-    /* margin: 5px; */
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
@@ -43,7 +42,6 @@ p{
     font-size: 125%;
     background-color:  rgb(145, 128, 91);
     color: white;
-    /* box-shadow: 2px 2px 2px gray; */
     box-shadow: -2px 2px 2px rgb(68, 68, 68);
     border: none;
     outline: none;

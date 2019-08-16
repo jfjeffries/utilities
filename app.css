@@ -7,7 +7,6 @@
 #wrapper{
     width: 100vw;
     height: 100vh;
-    /* background-color: rgb(255, 231, 179); */
     min-width: 270px;
     min-height: 430px;
 }
@@ -38,9 +37,6 @@ p {
 }
 #intro{
     grid-row: 1/ span 1;
-    /* padding-bottom: 2em; */
-    /* align-self: center;
-    justify-self: center; */
 }
 .treeDiv{
     margin: 10px;
@@ -78,7 +74,6 @@ p {
 @keyframes slide-in {
     0%{
         opacity: 0;
-
     }
     100%{
         opacity: 1;
@@ -87,10 +82,7 @@ p {
         opacity: 0;
     }
 }
-
-
 a{
-    /* margin-bottom: 2em; */
     text-decoration: none;
     color: white;
     border-radius: .25em;
@@ -101,7 +93,6 @@ a:hover{
 }
 li{
     background-color:  rgb(145, 128, 91);
-    
     list-style-type: none;
     border: none;
     margin-bottom: 5px;
@@ -120,12 +111,10 @@ li{
     align-content: center;
     justify-content: center;
     min-height: 10em;
-
     width: 100%;
 }
 #effects{
     width: 100%;
-
 }
 #cardsDiv.card{
     justify-self: center;
@@ -144,7 +133,6 @@ li{
     justify-items: center;
     grid-column-gap: 2em;
     background-color: black;
-    /* margin-top: 5vh; */
     padding: 2em;
     bottom: 0;
     position: absolute;
