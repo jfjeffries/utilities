@@ -2,28 +2,31 @@ var time = document.getElementById('time');
 var start = document.getElementById('start');
 var stop = document.getElementById('stop');
 var reset = document.getElementById('reset')
-// var bool = false;
+
 
 start.addEventListener('click', startCounting);
 stop.addEventListener('click', stopCounting);
-reset.addEventListener('click', function(){
-    seconds = 00;
-    minutes = 00;
-    hours = 00;
+reset.addEventListener('click', resetClock)
 
-    setTime();
-})
 var startCounting;
-
+var hundredths = 0;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var counting = false;
 
+function resetClock(){
+    hundredths = 00;
+    seconds = 00;
+    minutes = 00;
+    hours = 00;
+    setTime();
+}
 function setTime(){
     let h = hours;
     let m = minutes;
     let s = seconds;
+    let hu = hundredths;
     if(hours < 10){
         h = hours.toString();
         h = "0" + h;
@@ -36,15 +39,23 @@ function setTime(){
         s = seconds.toString();
         s = "0" + s;
     }
+    if(hundredths < 10){
+        hu = hundredths.toString();
+        hu = "0" + hu;
+    }
 
-    time.innerHTML = `${h}:${m}:${s}`
+    time.innerHTML = `${h}:${m}:${s}:${hu}`
 }
 
 function startCounting(){
     if(counting === false){
         counting = true;
         startCounting = setInterval(function(){
-        seconds++
+        hundredths++;
+        if(hundredths === 100){
+            seconds++;
+            hundredths = 0;
+        }
         if(seconds === 60){
             minutes++;
             seconds = 00;
@@ -54,7 +65,7 @@ function startCounting(){
             minutes = 00;
         }
         setTime();
-      }, 1000)
+      }, 10)
     }
 }
 
