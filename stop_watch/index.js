@@ -2,11 +2,14 @@ var time = document.getElementById('time');
 var start = document.getElementById('start');
 var stop = document.getElementById('stop');
 var reset = document.getElementById('reset')
+var list = document.getElementById('time_list');
+var clearList = document.getElementById('clear_button');
 
 
 start.addEventListener('click', startCounting);
-stop.addEventListener('click', stopCounting);
-reset.addEventListener('click', resetClock)
+stop.addEventListener('click', addToList);
+reset.addEventListener('click', resetClock);
+clearList.addEventListener('click', clear);
 
 var startCounting;
 var hundredths = 0;
@@ -15,31 +18,31 @@ var minutes = 0;
 var hours = 0;
 var counting = false;
 
-function resetClock(){
+function resetClock(){ //resets values back to 0 
     hundredths = 00;
     seconds = 00;
     minutes = 00;
     hours = 00;
     setTime();
 }
-function setTime(){
+function setTime(){  //sets the time on screen
     let h = hours;
     let m = minutes;
     let s = seconds;
     let hu = hundredths;
-    if(hours < 10){
+    if(hours < 10){  //add a 0 to display if only single digit
         h = hours.toString();
         h = "0" + h;
     }
-    if(minutes < 10){
+    if(minutes < 10){  //add a 0 to display if only single digit
         m = minutes.toString();
         m = "0" + m;
     }
-    if(seconds < 10){
+    if(seconds < 10){  //add a 0 to display if only single digit
         s = seconds.toString();
         s = "0" + s;
     }
-    if(hundredths < 10){
+    if(hundredths < 10){  //add a 0 to display if only single digit
         hu = hundredths.toString();
         hu = "0" + hu;
     }
@@ -48,7 +51,7 @@ function setTime(){
 }
 
 function startCounting(){
-    if(counting === false){
+    if(counting === false){  //makes sure clock isn't already running
         counting = true;
         startCounting = setInterval(function(){
         hundredths++;
@@ -66,10 +69,21 @@ function startCounting(){
         }
         setTime();
       }, 10)
+    } else {
+        stopCounting();
     }
 }
-
+function addToList(){
+    let item = document.createElement('li');
+    item.innerText = time.innerHTML;
+    list.append(item);
+}
 function stopCounting(){
     clearInterval(startCounting);
     counting = false;
+}
+function clear(){
+    while(list.firstChild){
+        list.firstChild.remove();
+    }
 }

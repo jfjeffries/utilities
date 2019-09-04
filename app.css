@@ -4,11 +4,18 @@
     font-family: 'Varela Round', sans-serif;
     
 }
+body{
+    z-index: -1000;
+    visibility: hidden;
+}
 #wrapper{
     width: 100vw;
     height: 100vh;
     min-width: 270px;
     min-height: 430px;
+    z-index: -1000;
+    visibility: hidden;
+
 }
 header {
     font-size: 30px;
@@ -17,14 +24,15 @@ header {
     background-color: black;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    visibility: visible;
 }
 main{
+    visibility: visible;
     display: grid;
     align-content: center;
     justify-content: center;
     grid-template-rows: auto auto;
     width: 100vw;
-    
 }
 p {
     color: white;
@@ -62,7 +70,6 @@ p {
     outline: none;
 }
 #my-dropdown{
-    
     animation-name: slide-in;
     animation-duration: .75s;
     background-color: black;
@@ -90,6 +97,7 @@ a{
 a:hover{
     text-decoration: none;
     color: rgb(45, 152, 184);
+    cursor: pointer;
 }
 li{
     background-color:  rgb(145, 128, 91);
@@ -112,6 +120,8 @@ li{
     justify-content: center;
     min-height: 10em;
     width: 100%;
+    background-color: white;
+    z-index: 100;
 }
 #effects{
     width: 100%;
@@ -126,40 +136,35 @@ li{
 }
 #cardsDiv{
     width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
-    grid-column-gap: 2em;
     background-color: black;
     padding: 2em;
     bottom: 0;
     position: absolute;
-}
-.card1{
-    grid-column: 1/ span 1;
-    justify-self: center;
-}
-.card2{
-    grid-column: 2/ span 1;
-}
-.card3{
-    grid-column: 3/ span 1;
+    z-index: -100;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 .card-text{
     color: black;
+}
+.cardContainer{
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;  
 }
 .card{
     color: white;
     background-color: rgb(145, 128, 91);
     width: 180px;
     transition: width ease 1s;
+    float: left;
+    margin: 10px;
+    z-index: 1000;
 }
-@media screen and (max-height: 760px){
-    #cardsDiv img{       
-        padding: 5px;
-        height: 0;       
+@media screen and (max-height: 415px){
+    #cardsDiv{       
+        position: static;
     }
 }
 @media screen and (max-height: 750px){
@@ -172,26 +177,22 @@ li{
     #intro > span {
         padding-bottom: 0;
     }
-    #cardsDiv{
-        position: static;
+    @media screen and (max-width: 750px){
 
     }
 }
-
-@media screen and (max-width: 750px){
-    #cardsDiv{
-        width: 100vw;
-        display: block;
-        margin-top: 0;
-        padding: 0;
-        padding-top: 2em;
+@media screen and (max-width: 863px){
+    .cardContainer{
+        max-width: 400px;
     }
-    .card{
-        width: 180px;
-        margin-bottom: 1em;
-        color: white;
-        background-color: rgb(145, 128, 91);
-        margin-left: auto;
-        margin-right: auto;
-    } 
+    @media screen and (max-height: 590px){
+        #cardsDiv{       
+            position: static;
+        }
+    }
+}
+@media screen and (max-width: 465px){
+    .cardContainer{
+        max-width: 200px;
+    }
 }

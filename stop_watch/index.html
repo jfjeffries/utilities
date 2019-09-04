@@ -3,7 +3,7 @@
 <head>
     <title>Stop watch</title>
     <link rel="stylesheet" href="stop_watch.css">
-    <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="wrapper">
@@ -15,11 +15,17 @@
                 <p id="time">00:00:00:00</p>
                 <div class="buttons">
                     <button class="button" id="reset">Reset</button>
-                    <button class="button" id="stop">Stop</button>
-                    <button class="button" id="start">Start</button>
+                    <button class="button" id="stop">Record</button>
+                    <button class="button" id="start">Start/Stop</button>
                 </div>
             </main>
         </div>
+        <div class="list">
+            <ol id="time_list">
+                
+            </ol>
+        </div>
+        <div class="clear_button_div"><button class="button" id="clear_button">Clear List</button></div>
         <section class="link">
             <a href="../index.html">Return Home</a>
         </section>
