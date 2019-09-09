@@ -5,20 +5,23 @@ const numbers = document.getElementById('numbers')
 var currentTime = new Date;
 var hAngle;
 var mAngle;
-var sAngle = currentTime.getSeconds() * 6 + 270;
+var sAngle;
 var currentHours;
 var currentMins;
 var currentSecs;
-// var hourHashes;
-var minuteHashes;
 var hourHashAngle = 0;
 var minuteHashAngle = 0;
+
+// hours.addEventListener('change', setBoxShadow(event));
+// minutes.addEventListener('change', setBoxShadow(event));
+// seconds.addEventListener('change', setBoxShadow(event));
 
 setTime();
 setInterval(() => {
     setTime();
     setAngle();
     move();
+    setBoxShadow();
 }, 1000)
 function move(){
     hours.style.transform = `rotate(${hAngle}deg)`
@@ -33,12 +36,9 @@ function setTime(){
 }
 function setAngle(){
     hAngle = ((currentHours * 30) - 90) + (currentMins * (1/60 * 30));
-    mAngle = ((currentMins * 6) + 270) + (currentSecs * (1/60 * 6));
-    sAngle = currentSecs * 6 + 270;
-    sAngle += 6;
-    if(sAngle == 360){
-        sAngle = 0;
-    }
+    mAngle = (((currentMins * 6) + 270) + (currentSecs * (1/60 * 6))) - 360;
+    sAngle = setSeconds();
+    // console.log(hAngle, mAngle, sAngle)
 }
 function makeHashes(){
     
@@ -65,10 +65,6 @@ function makeHashes(){
 
         }
     }
-    // minuteHashes = Array(60).fill(
-    //     document.createElement('div').setAttribute('class', 'minuteHash')
-    // );
-    // console.log(hourHashes)
 }
 function setHashAngle(){
     for(i = 0; i < hourHashes.length; i++){
@@ -77,7 +73,92 @@ function setHashAngle(){
         }
     }
 }
+function setBoxShadow(){
+    hours.style.boxShadow = calculateBoxShadow(hAngle);
+    minutes.style.boxShadow = calculateBoxShadow(mAngle);
+    seconds.style.boxShadow = calculateBoxShadow(sAngle);
+}
+function calculateBoxShadow(angle){
+    let first = 0;
+    let second = 0;
+    
+        if (angle > 0 && angle < 11.25){
+            first = 2;
+            second = -2;
+        }
+        if (angle >= 11.25 && angle < 33.75){
+            first = 1;
+            second = -3;
+        }
+        if (angle >= 33.75 && angle < 56.25){
+            first = 0;
+            second = -4;
+        }
+        if (angle >= 56.25 && angle < 78.75){
+            first = 1;
+            second = -3;
+        }
+        if (angle >= 78.75 && angle < 101.25){
+            first = 2;
+            second = -2;
+        }
+        if (angle >= 101.25 && angle < 123.75){
+            first = 3;
+            second = -1;
+        }
+        if (angle >= 123.75 && angle < 146.25){
+            first = 4;
+            second = 0;
+        }
+        if (angle >= 146.25 && angle < 168.75){
+            first = 3;
+            second = 1;
+        }
+        if (angle >= 168.75 && angle < 191.25){
+            first = 2;
+            second = 2;
+        }
+        if (angle >= 191.25 && angle < 213.75){
+            first = 1;
+            second = 3;
+        }
+        if (angle >= 213.75 && angle < 236.25){
+            first = 0;
+            second = 4;
+        }
+        if (angle >= 236.25 && angle < 258.75){
+            first = 1;
+            second = 3;
+        }
+        if (angle >= 258.75 && angle < 281.25){
+            first = 2;
+            second = 2;
+        }
+        if (angle >= 281.25 && angle < 303.75){
+            first = 3;
+            second = 1;
+        }
+        if (angle >= 303.75 && angle < 326.25){
+            first = 4;
+            second = 0;
+        }
+        if (angle >= 326.25 && angle < 348.75){
+            first = 3;
+            second = -1;
+        }
+        if (angle >= 348.75){
+            first = 2;
+            second = -2;
+        }
+    return `${first}px ${second}px 4px rgb(64, 64, 64)`;
+}
+function setSeconds(){
+    if(currentSecs * 6 + 270 >= 360){
+        return (currentSecs * 6 + 270) - 360;
+    } else {
+        return currentSecs * 6 + 270;
+    }
+}
 window.onload=function(){
     makeHashes();
-    // setHashAngle();
 }
