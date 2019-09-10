@@ -12,10 +12,6 @@ var currentSecs;
 var hourHashAngle = 0;
 var minuteHashAngle = 0;
 
-// hours.addEventListener('change', setBoxShadow(event));
-// minutes.addEventListener('change', setBoxShadow(event));
-// seconds.addEventListener('change', setBoxShadow(event));
-
 setTime();
 setInterval(() => {
     setTime();
