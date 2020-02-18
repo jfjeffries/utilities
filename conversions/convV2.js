@@ -64,7 +64,6 @@ dropTo.addEventListener('mouseleave', e => {
 fromInput.addEventListener('input', (e) => {
     changeButtonColor();
 })
-// let uls = document.querySelectorAll('class', 'myUl');
 dropFrom.addEventListener('mouseleave', e => {
     dropFrom.style.display = 'none';
 })
@@ -75,6 +74,7 @@ for(let li of fromList ){
             fromBtn.innerHTML = e.target.innerText;
             fromUnit = e.target.innerText.toLowerCase();
             fromUnitType = e.target.classList[1];
+            console.log(fromUnitType);
             if(fromUnitType != toUnitType){          
                 toBtn.innerText = "Select";
             }
@@ -104,6 +104,7 @@ convertBtn.addEventListener('click', function(e){
     }
 });
 function handleSubmit(val, type){
+    console.log(val, type)
     if(fromUnit.toLowerCase() == toUnit.toLowerCase()){
         answer.value = val;
     } else {
@@ -204,7 +205,7 @@ function populateList(){
     for(key in metric){
         metric[key].forEach(value => {
             let li = document.createElement('li');
-            li.setAttribute('class', 'dropdown-item length myLi');
+            li.setAttribute('class', `dropdown-item ${key.toLowerCase()} myLi`);
             li.innerText = value;
 
             switch(key.toLowerCase()){
@@ -253,6 +254,7 @@ function inchesTo(to){
     }
 }
 function ouncesFrom(from){
+    console.log(from)
     switch(from){
         case "ounce": return 1;
         case "pound": return 16;
@@ -265,6 +267,7 @@ function ouncesFrom(from){
     }
 }
 function ouncesTo(to){
+    console.log(to)
     switch(to){
         case "ounce": return 1;
         case "pound": return (1 / 16);
