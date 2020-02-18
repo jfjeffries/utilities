@@ -15,16 +15,9 @@ body{
     min-height: 430px;
     z-index: -1000;
     visibility: hidden;
-
-}
-header {
-    font-size: 30px;
-    width: 100vw;
-    height: 1.5em;
-    background-color: black;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    visibility: visible;
+    grid-template-rows: 3fr 1fr;
+    overflow: hidden;
 }
 main{
     visibility: visible;
@@ -33,13 +26,12 @@ main{
     justify-content: center;
     grid-template-rows: auto auto;
     width: 100vw;
+    pointer-events: none;
 }
 p {
     color: white;
-    margin: 0;
-    
+    margin: 0; 
 }
-
 #title{
     padding-left: 1em;
 }
@@ -47,36 +39,19 @@ p {
     grid-row: 1/ span 1;
 }
 .treeDiv{
-    margin: 10px;
+    margin: 2em;
 }
 .spanDiv{
-    
+    padding: 1em;
     height: 100%;
+    max-width: 90%;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 .tree{
     height: 25vh;
     width: auto;
     shape-outside: circle(50%);
-}
-#dropdown-button {
-    font-size: 20px;
-    grid-column: 2/ span 1;
-    width: 130px;
-    height: 100%;
-    justify-self: end;
-    background-color: black;
-    color: white;
-    border: none;
-    outline: none;
-}
-#my-dropdown{
-    animation-name: slide-in;
-    animation-duration: .75s;
-    background-color: black;
-    margin: 0;
-    min-width: 0;
-    padding: 4px;
-    font-size: 20px;
 }
 @keyframes slide-in {
     0%{
@@ -93,26 +68,12 @@ a{
     text-decoration: none;
     color: white;
     border-radius: .25em;
+    pointer-events: all;
 }
 a:hover{
     text-decoration: none;
     color: rgb(45, 152, 184);
     cursor: pointer;
-}
-li{
-    background-color:  rgb(145, 128, 91);
-    list-style-type: none;
-    border: none;
-    margin-bottom: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    width: 25em;
-    min-width: 80px;
-    max-width: 200px;
-    border-radius: .125em;
-    padding: 3px;
-    box-shadow: 2px 2px 2px gray;
 }
 #intro{
     display: grid;
@@ -138,20 +99,16 @@ li{
     width: 100vw;
     background-color: black;
     padding: 2em;
-    bottom: 0;
-    position: absolute;
     z-index: -100;
     text-align: center;
-    display: flex;
+    display: grid;
     justify-content: center;
+    align-content: center;
+    grid-row: 2/ end;
+    justify-self: end;
 }
 .card-text{
     color: black;
-}
-.cardContainer{
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;  
 }
 .card{
     color: white;
@@ -161,6 +118,9 @@ li{
     float: left;
     margin: 10px;
     z-index: 1000;
+    min-height: 70px;
+    padding: 5px;
+    box-sizing: border-box;
 }
 @media screen and (max-height: 415px){
     #cardsDiv{       

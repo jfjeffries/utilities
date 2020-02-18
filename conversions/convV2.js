@@ -6,9 +6,15 @@ const fromInput = document.getElementById("fromInput");
 const convertBtn = document.getElementById("convertBtn");
 const answer = document.getElementById("answer");
 const fromBtn = document.getElementById("fromBtn");
+const toBtn = document.getElementById("toBtn");
 const length = document.getElementById("length");
 const weight = document.getElementById("weight");
 const volume = document.getElementById("volume");
+const reset = document.getElementById("reset");
+const length_li = document.getElementById("length_li");
+const weight_li = document.getElementById("weight_li");
+const volume_li = document.getElementById("volume_li");
+
 
 var fromUnit = "";
 var toUnit = "";
@@ -24,34 +30,63 @@ const metric = {
     weight: ['Microgram', 'Milligram', 'Gram', 'Kilogram', 'Metric Ton'],
     volume: ['Milliliter','Imp Teaspoon', 'Imp Tablespoon', 'Imp Fluid Ounce', 'Imp Cup', 'Imp Pint', 'Imp Quart', 'Liter', 'Imp Gallon']
 }
-
-$(window).on('load', () => {
+length_li.addEventListener('mouseenter', e => {
+    length.style.display = 'block';
+})
+length_li.addEventListener('mouseleave', e => {
+    length.style.display = 'none';
+})
+weight_li.addEventListener('mouseenter', e => {
+    weight.style.display = 'block';
+})
+weight_li.addEventListener('mouseleave', e => {
+    weight.style.display = 'none';
+})
+volume_li.addEventListener('mouseenter', e => {
+    volume.style.display = 'block';
+})
+volume_li.addEventListener('mouseleave', e => {
+    volume.style.display = 'none';
+})
+window.addEventListener('load', () => {
     changeButtonColor();
     populateList();
 });
-$("#fromInput").on('input', (e) => {
+fromBtn.addEventListener('click', e => {
+    dropFrom.style.display = 'block';
+})
+toBtn.addEventListener('click', e => {
+    dropTo.style.display = 'block';
+})
+dropTo.addEventListener('mouseleave', e => {
+    dropTo.style.display = 'none';
+})
+fromInput.addEventListener('input', (e) => {
     changeButtonColor();
 })
-
-$('#dropdownFrom li').on('click', function(e){
-    if(e.target.classList.contains('dropdown-item')){
-        fromBtn.innerHTML = $(e.target).text();
-        fromUnit = $(e.target).text().toLowerCase();
-        fromUnitType = e.target.classList[1];
-        if(fromUnitType != toUnitType){          
-            toBtn.innerText = "Select";            
+// let uls = document.querySelectorAll('class', 'myUl');
+dropFrom.addEventListener('mouseleave', e => {
+    dropFrom.style.display = 'none';
+})
+let fromList = document.getElementsByClassName('fromLi')
+for(let li of fromList ){
+    li.addEventListener('click', function(e){
+        if(e.target.classList.contains('dropdown-item')){
+            fromBtn.innerHTML = e.target.innerText;
+            fromUnit = e.target.innerText.toLowerCase();
+            fromUnitType = e.target.classList[1];
+            if(fromUnitType != toUnitType){          
+                toBtn.innerText = "Select";
+            }
+            populateToList(e.target.parentElement.getAttribute('id'));
         }
-        populateToList(e.target.parentElement.getAttribute('id'));
-    }
-    changeButtonColor();
-});
+        changeButtonColor();
+        dropFrom.style.display = 'none';
+    });
+}
 
-$('#dropdownTo li').on('click', function(e){
-    toBtn.innerHTML = $(e.target).text();
-    toUnit = $(e.target).text();
-    
-});
-$(convertBtn).on('click', function(e){
+
+convertBtn.addEventListener('click', function(e){
     e.preventDefault();
     if(parseFloat(fromInput.value)){
         if(fromUnit){
@@ -69,7 +104,6 @@ $(convertBtn).on('click', function(e){
     }
 });
 function handleSubmit(val, type){
-    console.log(val, fromUnit, toUnit)
     if(fromUnit.toLowerCase() == toUnit.toLowerCase()){
         answer.value = val;
     } else {
@@ -92,73 +126,98 @@ function handleSubmit(val, type){
 
 function changeButtonColor(){
     let x = fromInput.value;
-    $(fromBtn).removeClass("blinking");
-    $(toBtn).removeClass("blinking");
-    $(fromInput).removeClass("inputBlink");
+    fromBtn.classList.remove("blinking");
+    toBtn.classList.remove("blinking");
+    fromInput.classList.remove("inputBlink");
     
     if(!fromUnit){
-        $(fromBtn).addClass("blinking");
+        fromBtn.classList.add("blinking");
     } else if (fromUnit && !toUnit){
-        $(toBtn).addClass("blinking");
+        toBtn.classList.add("blinking");
     } else if(!x){
-        $(fromInput).addClass("inputBlink");
+        fromInput.classList.add("inputBlink");
     } else {
-        $(convertBtn).addClass("blinking");
+        convertBtn.classList.add("blinking");
     }
 }
 
 function populateToList(unit){
-    if($("#dropdownTo:first-child")){
-        $("#dropdownTo").empty();
-    }
+    let toList = document.querySelectorAll('#dropdownTo li');
+    toList.forEach(li => {
+        li.parentNode.removeChild(li);
+    })
     standard[unit].forEach(key => {
-        $("#dropdownTo").append(`<li class="dropdown-item myLi">${key}</li>`)
+        let li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item myLi')
+        li.innerText = key;
+        dropdownTo.append(li);
+        li.addEventListener('click', e => {
+            toUnitType = unit;
+            if(e.target.classList.contains('dropdown-item')){
+                toBtn.innerHTML = e.target.innerText;
+                toUnit = e.target.innerText;
+                changeButtonColor();
+            }
+            dropdownTo.style.display = 'none';
+        })
     });
     metric[unit].forEach(key => {
-        $("#dropdownTo").append(`<li class="dropdown-item myLi">${key}</li>`)
-    });
-    $('#dropdownTo li').on('click', function(e){
-        toUnitType = unit;
-        if(e.target.classList.contains('dropdown-item')){
-            toBtn.innerHTML = $(e.target).text();
-            toUnit = $(e.target).text();
-            changeButtonColor();
-        }
+        let li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item myLi');
+        li.innerText = key;
+        dropdownTo.append(li);
+        li.addEventListener('click', e => {
+            toUnitType = unit;
+            if(e.target.classList.contains('dropdown-item')){
+                toBtn.innerHTML = e.target.innerText;
+                toUnit = e.target.innerText;
+                changeButtonColor();
+            }
+            dropdownTo.style.display = 'none';
+        })
     });
 }
 
 function populateList(){
     for(key in standard){
         standard[key].forEach(value => {
+            let li = document.createElement('li');
+            li.setAttribute('class', `dropdown-item ${key.toLowerCase()} myLi`);
+            li.innerText = value;
+            li.addEventListener('click', e => {})
             switch(key.toLowerCase()){
                 case "length":{
-                    $(length).append(`<li class="dropdown-item length myLi">${value}</li>`);
+                    length.append(li);
                     break;
                 }
                 case "weight":{
-                    $(weight).append(`<li class="dropdown-item weight myLi">${value}</li>`);
+                    weight.append(li);
                     break;
                 }
                 case "volume":{
-                    $(volume).append(`<li class="dropdown-item volume myLi">${value}</li>`);
-
+                    volume.append(li);
+                    break;
                 }
             }
         });
     }
     for(key in metric){
         metric[key].forEach(value => {
+            let li = document.createElement('li');
+            li.setAttribute('class', 'dropdown-item length myLi');
+            li.innerText = value;
+
             switch(key.toLowerCase()){
                 case "length":{
-                    $(length).append(`<li class="dropdown-item length myLi">${value}</li>`);
+                    length.append(li);
                     break;
                 }
                 case "weight":{
-                    $(weight).append(`<li class="dropdown-item weight myLi">${value}</li>`);
+                    weight.append(li);
                     break;
                 }
                 case "volume":{
-                    $(volume).append(`<li class="dropdown-item volume myLi">${value}</li>`);
+                    volume.append(li);
 
                 }
             }
@@ -166,7 +225,7 @@ function populateList(){
     }
 }
 
-$('#reset').on('click', function(){
+reset.addEventListener('click', function(){
     window.location.reload();
 });
 function inchesFrom(from){
@@ -219,7 +278,6 @@ function ouncesTo(to){
 }
 
 function teaspoonsTo(to){
-    console.log(to)
     switch(to){
         case "us teaspoon": return 1;
         case "us tablespoon": return (1 / 3);
@@ -232,7 +290,7 @@ function teaspoonsTo(to){
         case 'imp teaspoon': return (1 / 1.201);
         case 'imp tablespoon': return (1 / 3.603);
         case 'imp fluid ounce': return (1 / 5.765);
-        case 'imp cup': (1 / 57.646);
+        case 'imp cup': return (1 / 57.646);
         case 'imp pint': return (1 / 115.291);
         case 'imp quart': return (1 / 230.582);
         case 'liter': return (1 / 202.884);
@@ -241,15 +299,14 @@ function teaspoonsTo(to){
 }
 
 function teaspoonsFrom(from){
-    console.log(from)
     switch(from){
         case "us teaspoon": return 1;
         case "us tablespoon": return 3;
         case "us fluid ounce": return 6;
         case "us cup": return 48.6922;
-        case "fluid pint": return 96;
-        case "fluid quart": return 192;
-        case "fluid gallon": return 768;
+        case "us pint": return 96;
+        case "us quart": return 192;
+        case "us gallon": return 768;
         case 'milliliter': return (.202884);
         case 'imp teaspoon': return 1.20095;
         case 'imp tablespoon': return 3.60285;

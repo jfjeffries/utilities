@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./dropdown.css">
     <link rel="stylesheet" href="./conv.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src ="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <title>Conversions</title>
 </head>
 <body>
@@ -25,20 +19,20 @@
                         <p>FROM:</p>
                         <label for="from"></label>
                         <input type="text" name="from" id="fromInput" placeholder="qty">
-                        <button class="dropdown-toggle dropdown-button button" type="button" data-toggle="dropdown" id="fromBtn">Select</button>
+                        <button class="dropdown-toggle dropdown-button button" type="button" name="from" data-toggle="dropdown" id="fromBtn">Select</button>
                         <ul class="dropdown-menu myUl" id="dropdownFrom">
-                            <li class="dropdown-submenu"><p>Length</p>
-                                <ul class="dropdown-menu myUl" id="length">
+                            <li class="dropdown-submenu fromLi" id="length_li"><p>Length</p>
+                                <ul class="dropdown-menu myUl small-width" id="length">
 
                                 </ul>
                             </li>
-                            <li class="dropdown-submenu"><p>Weight</p>
-                                <ul class="dropdown-menu myUl" id="weight">
+                            <li class="dropdown-submenu fromLi" id="weight_li"><p>Weight</p>
+                                <ul class="dropdown-menu myUl small-width" id="weight">
 
                                 </ul>
                             </li>
-                            <li class="dropdown-submenu"><p>Volume</p>
-                                <ul class="dropdown-menu myUl" id="volume">
+                            <li class="dropdown-submenu fromLi" id="volume_li"><p>Volume</p>
+                                <ul class="dropdown-menu myUl small-width" id="volume">
 
                                 </ul>
                             </li>
@@ -46,7 +40,7 @@
                     </div>
                     <div id="toDiv">
                         <p id="toLabel">TO:</p>
-                        <button class="button dropdown-toggle dropdown-button" type="button" data-toggle="dropdown" id="toBtn">Select</button>
+                        <button class="button dropdown-toggle dropdown-button" name="to" type="button" data-toggle="dropdown" id="toBtn">Select</button>
                         <ul class="dropdown-menu myUl" id="dropdownTo">
 
                         </ul>
@@ -67,6 +61,6 @@
         </section>
     </div>
 </body>
-<!-- <script src="conv.js"></script> -->
+<script src="convDrop.js"></script>
 <script src="convV2.js"></script>
 </html>
