@@ -74,7 +74,6 @@ for(let li of fromList ){
             fromBtn.innerHTML = e.target.innerText;
             fromUnit = e.target.innerText.toLowerCase();
             fromUnitType = e.target.classList[1];
-            console.log(fromUnitType);
             if(fromUnitType != toUnitType){          
                 toBtn.innerText = "Select";
             }
@@ -84,7 +83,6 @@ for(let li of fromList ){
         dropFrom.style.display = 'none';
     });
 }
-
 
 convertBtn.addEventListener('click', function(e){
     e.preventDefault();
@@ -104,7 +102,6 @@ convertBtn.addEventListener('click', function(e){
     }
 });
 function handleSubmit(val, type){
-    console.log(val, type)
     if(fromUnit.toLowerCase() == toUnit.toLowerCase()){
         answer.value = val;
     } else {
@@ -254,7 +251,6 @@ function inchesTo(to){
     }
 }
 function ouncesFrom(from){
-    console.log(from)
     switch(from){
         case "ounce": return 1;
         case "pound": return 16;
@@ -267,7 +263,6 @@ function ouncesFrom(from){
     }
 }
 function ouncesTo(to){
-    console.log(to)
     switch(to){
         case "ounce": return 1;
         case "pound": return (1 / 16);
